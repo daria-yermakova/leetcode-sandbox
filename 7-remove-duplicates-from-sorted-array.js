@@ -1,4 +1,4 @@
-//7 Remove Duplicates from Sorted Array
+//7 and 11 Remove Duplicates from Sorted Array
 function removeDuplicates (nums) {
     for(let i=0; i<nums.length; ++i) {
         if(nums[i] === nums[i+1]) {

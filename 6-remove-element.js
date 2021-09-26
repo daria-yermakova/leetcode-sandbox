@@ -1,4 +1,4 @@
-//6 Remove Element
+//6 and 14 Remove Element
 function removeElement (nums, val) {
     for(let i=0; i<nums.length; ++i) {
         if(nums[i] === val) {
