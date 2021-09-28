@@ -1,14 +1,22 @@
 //3 Squares of a Sorted Array
 function sortedSquares (nums) {
+    let start = 0;
+    let end = nums.length-1;
     let arr = [];
-    for (let i = 0; i < nums.length; i++)
-    {
-        let squareI = nums[i]*nums[i];
-        arr.push(squareI);
-        for (let j = 0; j < arr.length-1; j++) {
-            if(arr[i]<arr[j]) {
-                arr[i] = arr.splice(j, 1, arr[i])[0];
+    for(let index=nums.length-1; index>=0; --index) {
+        let squareEnd = nums[end]*nums[end];
+        let squareStart = nums[start]*nums[start];
+        if(start!==end) {
+            if(squareStart >= squareEnd) {
+                arr[index] = squareStart;
+                start++;
             }
+            else {
+                arr[index] = squareEnd;
+                end--;
+            }
+        } else {
+            arr[index] = squareEnd;
         }
     }
     return arr;
