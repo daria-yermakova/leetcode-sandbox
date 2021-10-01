@@ -2,10 +2,12 @@
 function checkIfExist (arr) {
     let isExist = false;
     for(let i=0; i<arr.length-1; i++) {
-        for(let j=0; j<arr.length; j++) {
-            if(i!==j) {
-                if(arr[i] === arr[j]*2) isExist = true;
-            }
+        let k = arr.length-1;
+        while(i !== k && k!==-1) {
+            if(arr[i] === arr[k]*2 || arr[i]*2 === arr[k]) {
+                isExist = true;
+                break;
+            } else k--;
         }
     }
     return isExist;
