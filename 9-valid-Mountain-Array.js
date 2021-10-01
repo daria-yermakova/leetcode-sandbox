@@ -1,21 +1,23 @@
 //9 Valid Mountain Array
 function validMountainArray (arr) {
-    let max = Math.max.apply(null, arr);
-    let indexMax = arr.indexOf(max);
-    let counterIncreasing = 0;
-    let counterDecreasing = 0;
     let isValid = false;
+    let max = arr[0];
+    let indexMax = 0;
+    let k = 1;
     if(arr.length < 3)
         return false;
     for(let i=0; i<arr.length; i++) {
-        if(i < indexMax) {
-            if(arr[i] < arr[i+1]) counterIncreasing++;
+        if(i !== k && k !== arr.length) {
+            if(arr[i] < arr[k] && i <= indexMax) {
+                max = arr[k];
+                indexMax = k;
+                isValid = true;
+            } else if (arr[i] > arr[k] && i >= indexMax) {
+                isValid = true;
+            } else return false;
         }
-        else if(i >= indexMax) {
-            if(arr[i] > arr[i+1]) counterDecreasing++;
-        }
+        if(i !== arr.length-1) k++;
     }
-    isValid = (counterDecreasing !== 0) && (counterIncreasing !==0) &&
-        (((counterDecreasing+counterIncreasing)-(arr.length-1)) === 0);
+    if(indexMax === arr.length-1 || indexMax === 0) return false;
     return isValid;
 }

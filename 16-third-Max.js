@@ -1,16 +1,19 @@
 //16  Third Maximum Number
 function thirdMax (nums) {
-    const arr = [];
-    let counter = 0;
-    for(let i=0; i<nums.length; ++i) {
-        arr.push(nums[i]);
-        for (let j = 0; j < arr.length-1; j++) {
-            if(arr[i]<arr[j]) {
-                arr[i] = arr.splice(j, 1, arr[i])[0];
-            }
+    let max = 0;
+    let secondMax = 0;
+    let thirdMax = 0;
+    for(let i=0; i<nums.length; i++) {
+        if(nums[i] > max) {
+            thirdMax = secondMax;
+            secondMax = max;
+            max = nums[i];
+        } else if(nums[i] > secondMax) {
+            thirdMax = secondMax;
+            secondMax = nums[i];
+        } else if(nums[i] > thirdMax) {
+            thirdMax = nums[i];
         }
     }
-    let filteredArray = arr.filter((item, index) => arr.indexOf(item) === index);
-    if(filteredArray.length >= 3) return filteredArray[filteredArray.length-3];
-    else return arr[arr.length-1];
+    return thirdMax ? thirdMax : max;
 }
